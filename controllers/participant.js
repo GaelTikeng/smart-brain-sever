@@ -43,12 +43,13 @@ const getParticipant = async (req, res) => {
   } catch (err) {
     console.log("Could not get student info", err);
   }
+  
 };
 
 // post participant score and timeSpent
 const updateParticipant = async (req, res) => {
   const { timeSpent, score, name } = req.body;
-  
+
   try {
     await Participant.update(
       {
