@@ -71,17 +71,18 @@ const updateParticipant = async (req, res) => {
 };
 
 const getStudentPerformance = async (req, res) => {
+  let { userId } = req.body;
+  console.log("this is user iid", userId);
+
   try {
-    let userId = req.body.userId;
+    const allStudents = await Participant.findAll({
+      where: { id: userId },
+    });
 
-    let allStudents = await Participant.findAll({ where: { userId } });
-    
     res.send(allStudents).status(200);
-
   } catch (error) {
     console.log("Unable to get all students", error);
   }
-  
 };
 
 module.exports = {

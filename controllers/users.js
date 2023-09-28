@@ -28,6 +28,8 @@ const createUser = async (req, res) => {
   res.send({ token: jwtoken });
 };
 
+
+// get newly signed up user
 const getCurrentUser = async (req, res) => {
   const { email } = req.body;
 

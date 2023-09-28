@@ -22,7 +22,7 @@ router.get("/getStudentInfo", getParticipant)
 router.post("/student", createParticipant)
 router.get("/dashboard/:userId/:quizId", getQuestion);
 router.post("/update", updateParticipant)
-router.get("/getStudents", getStudentPerformance)
+router.post("/getstudents", getStudentPerformance)
 
 // protected routes
 // router.use(AuthMiddleWare);
