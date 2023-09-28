@@ -5,7 +5,7 @@ const router = express.Router();
 
 const pool = require('./pool')
 
-const { createParticipant, getParticipant, updateParticipant } = require("../controllers/participant");
+const { createParticipant, getParticipant, updateParticipant, getStudentPerformance } = require("../controllers/participant");
 const { getQuizzes, createQuiz, getQuizByID } = require("../controllers/quiz");
 
 const { getQuestion, createQuestion } = require("../controllers/question");
@@ -22,9 +22,10 @@ router.get("/getStudentInfo", getParticipant)
 router.post("/student", createParticipant)
 router.get("/dashboard/:userId/:quizId", getQuestion);
 router.post("/update", updateParticipant)
+router.get("/getStudents", getStudentPerformance)
 
 // protected routes
-// router.use(AuthMiddleWare);
+router.use(AuthMiddleWare);
 router.get("/dashboard/:userId", getQuizzes);
 router.get("/dashboard/:quizId", getQuizByID);
 router.post("/dashboard/:userId/create-quiz", createQuiz);
