@@ -70,13 +70,14 @@ const updateParticipant = async (req, res) => {
   }
 };
 
+// get participant's score per userId
 const getStudentPerformance = async (req, res) => {
   let { userId } = req.body;
   console.log("this is user iid", userId);
 
   try {
     const allStudents = await Participant.findAll({
-      where: { id: userId },
+      where: { userId: userId },
     });
 
     res.send(allStudents).status(200);
