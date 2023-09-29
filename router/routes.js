@@ -5,7 +5,7 @@ const router = express.Router();
 
 const pool = require('./pool')
 
-const { createParticipant, getParticipant, updateParticipant } = require("../controllers/participant");
+const { createParticipant, getParticipant, updateParticipant, getStudentPerformance } = require("../controllers/participant");
 const { getQuizzes, createQuiz, getQuizByID } = require("../controllers/quiz");
 
 const { getQuestion, createQuestion } = require("../controllers/question");
@@ -30,6 +30,8 @@ router.get("/dashboard/:quizId", getQuizByID);
 router.post("/dashboard/:userId/create-quiz", createQuiz);
 router.post("/dashboard/:userId/create-question", createQuestion);
 router.post("/dashboard/:userId/create-option", createOption);
+router.post("/getstudents", getStudentPerformance)
+
 
 
 

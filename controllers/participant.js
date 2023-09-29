@@ -47,11 +47,13 @@ const getParticipant = async (req, res) => {
 
 // post participant score and timeSpent
 const updateParticipant = async (req, res) => {
-  const { timeSpent, score, name } = req.body;
-  
+  const { timeSpent, score, name, quizId, userId } = req.body;
+
   try {
     await Participant.update(
       {
+        userId: userId,
+        quiId: quizId,
         score: score,
         timeSpent: timeSpent,
       },
@@ -60,13 +62,33 @@ const updateParticipant = async (req, res) => {
           name: name,
         },
       }
-    )
-    res.send("Successfully sent data")
-  }
-  catch (err) {
-    console.log("could not update")
-    res.send("Something went wrong").status(500)
+    );
+    res.send("Successfully sent data");
+  } catch (err) {
+    console.log("could not update");
+    res.send("Something went wrong").status(500);
   }
 };
 
-module.exports = { createParticipant, getParticipant, updateParticipant };
+// get participant's score per userId
+const getStudentPerformance = async (req, res) => {
+  let { userId } = req.body;
+  console.log("this is user iid", userId);
+
+  try {
+    const allStudents = await Participant.findAll({
+      where: { userId: userId },
+    });
+
+    res.send(allStudents).status(200);
+  } catch (error) {
+    console.log("Unable to get all students", error);
+  }
+};
+
+module.exports = {
+  createParticipant,
+  getParticipant,
+  updateParticipant,
+  getStudentPerformance,
+};

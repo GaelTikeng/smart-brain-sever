@@ -23,6 +23,10 @@ const Participant = sequel.define("participant", {
   },
   timeSpent: {
     type: DataTypes.STRING,
+  },
+  userId: {
+    type: DataTypes.STRING,
+    foreignKey: true
   }
 });
 
